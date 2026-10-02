@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Muhaiman // Software Engineer & AI Architect // 3D Cyber Portfolio</title>
+  
+  <!-- SEO & Social Meta Tags -->
+  <meta name="description" content="Portfolio of Muhaiman - Multi-Disciplinary Software Engineer, AI Engineer, 3D Web Designer, and Cybersecurity Specialist.">
+  <meta name="keywords" content="Muhaiman, AI Engineer, Software Engineer, Three.js, 3D Web, Cybersecurity, Autonomous Agents, Web Developer">
+  <meta name="author" content="Muhaiman">
+  <meta name="theme-color" content="#030712">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Muhaiman // AI Engineer, 3D Web Developer & Cyber Specialist">
+  <meta property="og:description" content="Immersive 3D Portfolio showcasing Autonomous AI Agents, Next-Gen Websites, 3D WebGL, and Hardened Architectures.">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Devicon CDN for verified tech stack logos -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+
+  <!-- Tailwind CSS CDN with Cyberpunk Theme Config -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'cyber-dark': '#030712',
+            'cyber-surface': '#0a0f1d',
+            'cyber-card': 'rgba(13, 21, 38, 0.7)',
+            'cyan': {
+              300: '#67e8f9',
+              400: '#00f3ff',
+              500: '#00d0db',
+              950: '#042f38'
+            },
+            'purple': {
+              300: '#f0abfc',
+              400: '#d946ef',
+              500: '#c026d3',
+              950: '#38093e'
+            },
+            'emerald': {
+              300: '#6ee7b7',
+              400: '#00ff9d',
+              500: '#10b981',
+              950: '#032e1e'
+            }
+          },
+          fontFamily: {
+            'orbitron': ['Orbitron', 'sans-serif'],
+            'space': ['Space Grotesk', 'sans-serif'],
+            'mono': ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Custom Cyberpunk Design System -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-cyber-dark text-slate-200 antialiased overflow-x-hidden selection:bg-cyan-500 selection:text-black">
+  
+  <!-- Ambient Audio Indicator / Sound Generator Feedback -->
+  <div id="audio-beacon" class="sr-only" aria-live="polite"></div>
+
+  <!-- Background 3D WebGL Canvas Layer -->
+  <canvas id="bg-canvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+  <!-- Futuristic Cyber Scanline & Vignette Layer -->
+  <div class="fixed inset-0 pointer-events-none z-10 cyber-scanlines opacity-40"></div>
+  <div class="fixed inset-0 pointer-events-none z-10 cyber-vignette"></div>
+
+  <!-- Navigation Bar -->
+  <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300 backdrop-blur-xl border-b border-cyan-500/20 bg-cyber-dark/80" id="main-header">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#hero" class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-cyan-400 rounded-lg p-1">
+        <div class="w-10 h-10 rounded-lg border border-cyan-400/60 bg-cyan-950/40 flex items-center justify-center text-cyan-400 font-orbitron font-bold text-lg group-hover:border-cyan-400 group-hover:shadow-[0_0_15px_rgba(0,243,255,0.6)] transition-all">
+          <span class="text-cyan-400">&lt;</span>M<span class="text-purple-400">/&gt;</span>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-orbitron font-extrabold tracking-widest text-lg text-white group-hover:text-cyan-400 transition-colors">
+            MUHAIMAN
+          </span>
+          <span class="font-mono text-[10px] tracking-wider text-cyan-400/80 uppercase">
+            // ARCHITECT 2.0
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden md:flex items-center gap-8 font-space text-sm tracking-wide">
+        <a href="#about" class="nav-link text-slate-300 hover:text-cyan-400 transition-colors py-1 relative">
+          <span class="font-mono text-cyan-500 text-xs mr-1">01.</span>About
+        </a>
+        <a href="#services" class="nav-link text-slate-300 hover:text-cyan-400 transition-colors py-1 relative">
+          <span class="font-mono text-cyan-500 text-xs mr-1">02.</span>Services
+        </a>
+        <a href="#skills" class="nav-link text-slate-300 hover:text-cyan-400 transition-colors py-1 relative">
+          <span class="font-mono text-cyan-500 text-xs mr-1">03.</span>Skills
+        </a>
+        <a href="#projects" class="nav-link text-slate-300 hover:text-cyan-400 transition-colors py-1 relative">
+          <span class="font-mono text-cyan-500 text-xs mr-1">04.</span>Projects
+        </a>
+        <a href="#contact" class="nav-link text-slate-300 hover:text-cyan-400 transition-colors py-1 relative">
+          <span class="font-mono text-cyan-500 text-xs mr-1">05.</span>Contact
+        </a>
+      </nav>
+
+      <!-- Utility Controls: Audio & Performance Mode & CTA -->
+      <div class="hidden lg:flex items-center gap-4">
+        <!-- Audio Synthesizer Toggle -->
+        <button id="audio-toggle" class="cyber-icon-btn text-xs font-mono text-slate-400 hover:text-cyan-400 p-2 border border-slate-700/80 rounded-lg hover:border-cyan-400/50 transition-all flex items-center gap-1.5" title="Toggle Sci-Fi Audio FX">
+          <i class="fa-solid fa-volume-xmark text-sm" id="audio-icon"></i>
+          <span class="text-[11px]" id="audio-status">SFX: OFF</span>
+        </button>
+
+        <!-- 3D Graphics Toggle (High FPS / Ultra) -->
+        <button id="perf-toggle" class="cyber-icon-btn text-xs font-mono text-slate-400 hover:text-purple-400 p-2 border border-slate-700/80 rounded-lg hover:border-purple-400/50 transition-all flex items-center gap-1.5" title="Toggle 3D Quality & Antialiasing">
+          <i class="fa-solid fa-microchip text-sm text-cyan-400"></i>
+          <span class="text-[11px]" id="perf-label">3D: HIGH</span>
+        </button>
+
+        <!-- Direct CTA -->
+        <a href="#contact" class="cyber-btn-nav font-orbitron text-xs font-semibold px-4 py-2 text-cyan-400 border border-cyan-400/60 bg-cyan-950/20 hover:bg-cyan-400 hover:text-black transition-all rounded shadow-[0_0_12px_rgba(0,243,255,0.25)] hover:shadow-[0_0_20px_rgba(0,243,255,0.8)]">
+          INITIATE_UPLINK
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="mobile-menu-btn" class="md:hidden text-cyan-400 hover:text-white p-2 border border-cyan-500/30 rounded-lg transition-colors" aria-label="Toggle Navigation Menu">
+        <i class="fa-solid fa-bars-staggered text-xl" id="menu-icon"></i>
+      </button>
+
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-b border-cyan-500/30 bg-cyber-dark/95 backdrop-blur-2xl px-6 py-6 transition-all duration-300">
+      <div class="flex flex-col space-y-4 font-space text-base">
+        <a href="#about" class="mobile-nav-link text-slate-300 hover:text-cyan-400 flex items-center justify-between py-2 border-b border-slate-800">
+          <span><span class="font-mono text-cyan-400 mr-2">01.</span>About Me</span>
+          <i class="fa-solid fa-chevron-right text-xs text-slate-600"></i>
+        </a>
+        <a href="#services" class="mobile-nav-link text-slate-300 hover:text-cyan-400 flex items-center justify-between py-2 border-b border-slate-800">
+          <span><span class="font-mono text-cyan-400 mr-2">02.</span>Core Services</span>
+          <i class="fa-solid fa-chevron-right text-xs text-slate-600"></i>
+        </a>
+        <a href="#skills" class="mobile-nav-link text-slate-300 hover:text-cyan-400 flex items-center justify-between py-2 border-b border-slate-800">
+          <span><span class="font-mono text-cyan-400 mr-2">03.</span>Skills Matrix</span>
+          <i class="fa-solid fa-chevron-right text-xs text-slate-600"></i>
+        </a>
+        <a href="#projects" class="mobile-nav-link text-slate-300 hover:text-cyan-400 flex items-center justify-between py-2 border-b border-slate-800">
+          <span><span class="font-mono text-cyan-400 mr-2">04.</span>Project Showcase</span>
+          <i class="fa-solid fa-chevron-right text-xs text-slate-600"></i>
+        </a>
+        <a href="#contact" class="mobile-nav-link text-slate-300 hover:text-cyan-400 flex items-center justify-between py-2 border-b border-slate-800">
+          <span><span class="font-mono text-cyan-400 mr-2">05.</span>Contact & Connect</span>
+          <i class="fa-solid fa-chevron-right text-xs text-slate-600"></i>
+        </a>
+        
+        <div class="pt-4 flex items-center justify-between">
+          <button id="mobile-audio-toggle" class="text-xs font-mono text-cyan-400 p-2 border border-cyan-500/40 rounded flex items-center gap-2">
+            <i class="fa-solid fa-volume-xmark"></i> Sound FX
+          </button>
+          <a href="#contact" class="font-orbitron text-xs font-bold px-4 py-2 bg-cyan-400 text-black rounded text-center">
+            HIRE ME
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative z-20">
+
+    <!-- ========================================================================= -->
+    <!-- 1. HERO SECTION                                                           -->
+    <!-- ========================================================================= -->
+    <section id="hero" class="min-h-screen pt-28 pb-16 flex items-center relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <!-- Left Column: Copy, Dynamic Typing & CTAs -->
+          <div class="lg:col-span-7 flex flex-col justify-center space-y-6">
+            
+            <!-- Telemetry Pill / Availability Status -->
+            <div class="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full border border-emerald-500/40 bg-emerald-950/30 backdrop-blur-md w-fit">
+              <span class="relative flex h-2.5 w-2.5">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+              </span>
+              <span class="font-mono text-xs text-emerald-400 font-semibold tracking-wider uppercase">
+                STATUS: READY // AVAILABLE FOR CONTRACTS
+              </span>
+            </div>
+
+            <!-- Main Intro & Glitch Title -->
+            <div class="space-y-2">
+              <p class="font-mono text-cyan-400 tracking-widest text-sm uppercase">
+                &gt;&gt; SYSTEM.INITIALIZE_IDENTITY
+              </p>
+              <h1 class="font-orbitron text-4xl sm:text-6xl xl:text-7xl font-black tracking-tight text-white leading-none">
+                HELLO, I'M <br>
+                <span class="glitch-text text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-fuchsia-500 inline-block drop-shadow-[0_0_25px_rgba(0,243,255,0.4)]" data-text="MUHAIMAN">
+                  MUHAIMAN
+                </span>
+              </h1>
+            </div>
+
+            <!-- Dynamic Typing Effect Container -->
+            <div class="h-12 flex items-center">
+              <div class="font-mono text-lg sm:text-2xl text-slate-200 flex items-center font-medium">
+                <span class="text-cyan-400 mr-2">&gt;</span>
+                <span class="text-slate-400 mr-2">Specializing in</span>
+                <span id="typing-text" class="text-cyan-400 font-bold border-b-2 border-cyan-400"></span>
+                <span class="cursor-blink ml-1 text-cyan-400">_</span>
+              </div>
+            </div>
+
+            <!-- Bio Mission Brief -->
+            <p class="font-space text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
+              Engineering cross-domain solutions at the intersection of <strong class="text-cyan-400 font-semibold">Autonomous AI Agents</strong>, immersive <strong class="text-purple-400 font-semibold">3D Web Experiences</strong>, bulletproof <strong class="text-emerald-400 font-semibold">Cybersecurity Architectures</strong>, and high-performance full-stack web platforms.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-wrap items-center gap-4 pt-2">
+              <a href="#projects" class="cyber-btn cyber-btn-primary group">
+                <span class="cyber-btn-cut"></span>
+                <i class="fa-solid fa-cube text-cyan-400 group-hover:rotate-45 transition-transform"></i>
+                <span>Explore 3D Work</span>
+                <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+              </a>
+
+              <a href="#contact" class="cyber-btn cyber-btn-secondary group">
+                <span class="cyber-btn-cut"></span>
+                <i class="fa-solid fa-bolt text-purple-400"></i>
+                <span>Hire Me</span>
+              </a>
+
+              <a href="https://github.com/muhaimanawan" target="_blank" rel="noopener noreferrer" class="cyber-icon-link p-3 rounded-lg border border-slate-700/80 bg-slate-900/60 hover:border-cyan-400 text-slate-300 hover:text-cyan-400 transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)]" title="GitHub Profile">
+                <i class="fa-brands fa-github text-xl"></i>
+              </a>
+
+              <a href="https://www.linkedin.com/in/atta-ul-muhaiman" target="_blank" rel="noopener noreferrer" class="cyber-icon-link p-3 rounded-lg border border-slate-700/80 bg-slate-900/60 hover:border-cyan-400 text-slate-300 hover:text-cyan-400 transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)]" title="LinkedIn Profile">
+                <i class="fa-brands fa-linkedin-in text-xl"></i>
+              </a>
+
+              <a href="https://wa.me/923021173377?text=Hello%20Muhaiman,%20I%20reviewed%20your%20portfolio%20and%20would%20like%20to%20connect!" target="_blank" rel="noopener noreferrer" class="cyber-icon-link p-3 rounded-lg border border-slate-700/80 bg-slate-900/60 hover:border-emerald-400 text-slate-300 hover:text-emerald-400 transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)]" title="WhatsApp Direct (+92 302 1173377)">
+                <i class="fa-brands fa-whatsapp text-xl"></i>
+              </a>
+            </div>
+
+            <!-- Live Telemetry Pill Bar -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-slate-800/80 font-mono text-xs">
+              <div class="bg-slate-950/40 p-2.5 rounded border border-slate-800/80">
+                <div class="text-cyan-400 font-bold font-orbitron text-lg">05+</div>
+                <div class="text-slate-400 text-[11px]">Core Disciplines</div>
+              </div>
+              <div class="bg-slate-950/40 p-2.5 rounded border border-slate-800/80">
+                <div class="text-purple-400 font-bold font-orbitron text-lg">40+</div>
+                <div class="text-slate-400 text-[11px]">Projects Shipped</div>
+              </div>
+              <div class="bg-slate-950/40 p-2.5 rounded border border-slate-800/80">
+                <div class="text-emerald-400 font-bold font-orbitron text-lg">99.9%</div>
+                <div class="text-slate-400 text-[11px]">Security Hardening</div>
+              </div>
+              <div class="bg-slate-950/40 p-2.5 rounded border border-slate-800/80">
+                <div class="text-yellow-400 font-bold font-orbitron text-lg">60+ FPS</div>
+                <div class="text-slate-400 text-[11px]">WebGL Precision</div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right Column: Interactive 3D Hero Core & Engineered Profile Container -->
+          <div class="lg:col-span-5 flex flex-col items-center justify-center relative">
+            
+            <!-- 3D Interactive Core Stage -->
+            <div class="relative w-full max-w-md aspect-square rounded-2xl p-2 flex items-center justify-center">
+              
+              <!-- Three.js Canvas Container -->
+              <div class="w-full h-full relative rounded-2xl overflow-hidden border border-cyan-500/30 bg-cyber-dark/40 backdrop-blur-md shadow-[0_0_40px_rgba(0,243,255,0.15)] group" id="hero-3d-stage">
+                
+                <!-- 3D Core Canvas -->
+                <canvas id="hero-core-canvas" class="w-full h-full block cursor-grab active:cursor-grabbing"></canvas>
+
+                <!-- Interactive Orbit Controls Overlay Hint -->
+                <div class="absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-slate-950/80 border border-cyan-500/40 text-[11px] font-mono text-cyan-400 flex items-center gap-2 pointer-events-none select-none backdrop-blur-md transition-opacity duration-300 opacity-90 group-hover:opacity-100">
+                  <i class="fa-solid fa-arrows-up-down-left-right text-xs"></i>
+                  <span>Click & Drag to Orbit 3D Core</span>
+                </div>
+
+                <!-- HUD Holographic Compass & Markers -->
+                <div class="absolute top-3 left-3 text-[10px] font-mono text-cyan-500/80 pointer-events-none">
+                  CORE_REV: 0x7F9<br>ANGULAR_VEL: ACTIVE
+                </div>
+                <div class="absolute top-3 right-3 text-[10px] font-mono text-purple-400/80 pointer-events-none text-right">
+                  ORBIT_MESH: ICO_V3<br>SHADER: METALLIC
+                </div>
+
+                <!-- Decorative Cyber Corner Accents -->
+                <span class="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-cyan-400"></span>
+                <span class="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-cyan-400"></span>
+                <span class="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-cyan-400"></span>
+                <span class="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-cyan-400"></span>
+              </div>
+
+            </div>
+
+            <!-- Profile Picture Container (Engineered with Exact Path and Class) -->
+            <div class="mt-6 w-full max-w-sm">
+              <div class="profile-img-container relative group rounded-xl p-1 bg-gradient-to-r from-cyan-500/40 via-purple-500/40 to-blue-500/40 shadow-[0_0_30px_rgba(0,243,255,0.2)]">
+                
+                <!-- Inner Shield Frame -->
+                <div class="relative rounded-lg overflow-hidden bg-slate-950/90 border border-cyan-400/60 p-3">
+                  
+                  <div class="flex items-center gap-4">
+                    
+                    <!-- Avatar Image with Holographic Scanlines & Fallback -->
+                    <div class="relative w-20 h-20 sm:w-24 sm:h-24 rounded-lg overflow-hidden border border-cyan-400 flex-shrink-0 shadow-[0_0_15px_rgba(0,243,255,0.3)] bg-slate-900">
+                      
+                      <!-- Exact Path Image Requested by User -->
+                      <img 
+                        src="assets/profile.jpg" 
+                        alt="Muhaiman - Software Engineer & AI Architect" 
+                        id="profile-img" 
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        onerror="this.onerror=null; this.src='assets/profile-placeholder.svg';"
+                      />
+
+                      <!-- Cyber Scanline Effect Over Image -->
+                      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-400/20 to-transparent translate-y-[-100%] animate-scan pointer-events-none"></div>
+                    </div>
+
+                    <!-- Profile Dossier Badges -->
+                    <div class="flex flex-col justify-center overflow-hidden">
+                      <div class="flex items-center gap-2 mb-1">
+                        <span class="inline-block w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                        <span class="font-mono text-[11px] text-cyan-400 tracking-wider font-bold">OPERATOR: MUHAIMAN</span>
+                      </div>
+                      <h4 class="font-orbitron text-sm font-bold text-white truncate">LEAD ARCHITECT</h4>
+                      <p class="font-mono text-[10px] text-slate-400 truncate mt-0.5">SEC_CLEARANCE: LEVEL_5</p>
+                      <div class="flex items-center gap-2 mt-2">
+                        <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-cyan-950/80 border border-cyan-500/40 text-cyan-300">AI / LLM</span>
+                        <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-purple-950/80 border border-purple-500/40 text-purple-300">CYBER</span>
+                        <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-500/40 text-emerald-300">3D WEB</span>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <!-- Telemetry Coordinates Footer -->
+                  <div class="mt-2.5 pt-2 border-t border-slate-800/80 flex items-center justify-between text-[10px] font-mono text-slate-500">
+                    <span>PATH: assets/profile.jpg</span>
+                    <span class="text-emerald-400">● ENCRYPTED</span>
+                  </div>
+
+                </div>
+
+                <!-- Cyber Decorative Anchors -->
+                <div class="corner-tl"></div>
+                <div class="corner-tr"></div>
+                <div class="corner-bl"></div>
+                <div class="corner-br"></div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 2. ABOUT ME SECTION                                                       -->
+    <!-- ========================================================================= -->
+    <section id="about" class="py-24 relative border-t border-cyan-500/10 bg-slate-950/40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Section Header -->
+        <div class="flex flex-col items-center text-center mb-16 space-y-3">
+          <span class="font-mono text-cyan-400 text-xs tracking-widest uppercase px-3 py-1 rounded bg-cyan-950/50 border border-cyan-500/30">
+            // DOSSIER CLASSIFIED // LEVEL 5 ACCESS
+          </span>
+          <h2 class="font-orbitron text-3xl sm:text-5xl font-black text-white">
+            ABOUT THE <span class="text-cyan-400">ARCHITECT</span>
+          </h2>
+          <div class="w-24 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          <!-- Left Bio Card -->
+          <div class="lg:col-span-6 space-y-6">
+            
+            <div class="cyber-glass-card p-8 rounded-xl border border-slate-800 hover:border-cyan-500/50 transition-all">
+              <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-800">
+                <i class="fa-solid fa-fingerprint text-2xl text-cyan-400"></i>
+                <div>
+                  <h3 class="font-orbitron text-lg font-bold text-white">Multi-Disciplinary Synthesis</h3>
+                  <p class="font-mono text-xs text-slate-400">Core Engineering Philosophy</p>
+                </div>
+              </div>
+
+              <div class="space-y-4 font-space text-slate-300 leading-relaxed text-sm sm:text-base">
+                <p>
+                  I am <strong class="text-white">Muhaiman</strong>, a multi-disciplinary tech professional operating at the convergence of software engineering, artificial intelligence, interactive 3D web design, and cybersecurity.
+                </p>
+                <p>
+                  Rather than siloing disciplines, I combine <span class="text-cyan-400 font-semibold">autonomous AI agent pipelines</span>, <span class="text-purple-400 font-semibold">immersive WebGL/Three.js environments</span>, and <span class="text-emerald-400 font-semibold">cryptographically hardened security protocols</span> to build products that are not just visually staggering, but computationally resilient.
+                </p>
+                <p>
+                  From building custom LLM multi-agent swarms with RAG architectures to crafting 60 FPS interactive spatial web interfaces, every line of code is measured for low latency, zero-trust integrity, and exceptional user delight.
+                </p>
+              </div>
+
+              <!-- Key Capabilities Pillars -->
+              <div class="grid grid-cols-2 gap-4 mt-8 pt-6 border-t border-slate-800/80 font-space text-xs">
+                <div class="flex items-start gap-2.5">
+                  <i class="fa-solid fa-brain text-cyan-400 mt-1"></i>
+                  <div>
+                    <h5 class="font-bold text-white">AI Orchestration</h5>
+                    <p class="text-slate-400">RAG, Autonomous Agents, Custom LLM Workflows</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-2.5">
+                  <i class="fa-solid fa-cube text-purple-400 mt-1"></i>
+                  <div>
+                    <h5 class="font-bold text-white">3D Spatial Web</h5>
+                    <p class="text-slate-400">Three.js, WebGL Shaders, Interactive Canvases</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-2.5">
+                  <i class="fa-solid fa-shield-halved text-emerald-400 mt-1"></i>
+                  <div>
+                    <h5 class="font-bold text-white">Cybersecurity</h5>
+                    <p class="text-slate-400">Vulnerability Audits, OWASP, Hardened APIs</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-2.5">
+                  <i class="fa-solid fa-bezier-curve text-yellow-400 mt-1"></i>
+                  <div>
+                    <h5 class="font-bold text-white">Visual Design</h5>
+                    <p class="text-slate-400">Brand Identity, Graphic Design, Modern UI/UX</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Right Column: Interactive Terminal Simulator -->
+          <div class="lg:col-span-6 space-y-6">
+            
+            <div class="cyber-terminal rounded-xl overflow-hidden border border-cyan-500/40 bg-slate-950 shadow-[0_0_35px_rgba(0,243,255,0.1)]">
+              
+              <!-- Terminal Header -->
+              <div class="bg-slate-900/90 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+                  <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+                  <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+                  <span class="font-mono text-xs text-slate-400 ml-2">muhaiman@cyber-shell:~ (bash)</span>
+                </div>
+                <span class="font-mono text-[10px] text-cyan-400 px-2 py-0.5 rounded bg-cyan-950/60 border border-cyan-500/30">
+                  INTERACTIVE
+                </span>
+              </div>
+
+              <!-- Terminal Output Window -->
+              <div id="terminal-body" class="p-5 font-mono text-xs sm:text-sm text-slate-300 h-80 overflow-y-auto space-y-3 scrollbar-thin">
+                <div class="text-slate-500">// Welcome to Muhaiman's Interactive Terminal Shell v2.4.0</div>
+                <div class="text-cyan-400">&gt; System initialized. Type <span class="text-yellow-400 font-bold">'help'</span> to see available commands or click quick prompts below.</div>
+              </div>
+
+              <!-- Quick Command Buttons -->
+              <div class="px-4 py-2 bg-slate-900/50 border-t border-slate-800/80 flex flex-wrap gap-2 text-[11px] font-mono">
+                <span class="text-slate-500 self-center">Quick Run:</span>
+                <button class="terminal-quick-btn px-2 py-1 rounded bg-slate-800 hover:bg-cyan-950 hover:text-cyan-300 border border-slate-700 hover:border-cyan-500/50 transition-colors" data-cmd="skills">skills</button>
+                <button class="terminal-quick-btn px-2 py-1 rounded bg-slate-800 hover:bg-cyan-950 hover:text-cyan-300 border border-slate-700 hover:border-cyan-500/50 transition-colors" data-cmd="services">services</button>
+                <button class="terminal-quick-btn px-2 py-1 rounded bg-slate-800 hover:bg-cyan-950 hover:text-cyan-300 border border-slate-700 hover:border-cyan-500/50 transition-colors" data-cmd="contact">contact</button>
+                <button class="terminal-quick-btn px-2 py-1 rounded bg-slate-800 hover:bg-cyan-950 hover:text-cyan-300 border border-slate-700 hover:border-cyan-500/50 transition-colors" data-cmd="clear">clear</button>
+              </div>
+
+              <!-- Terminal Input Prompt -->
+              <form id="terminal-form" class="p-3 bg-slate-900 border-t border-slate-800 flex items-center gap-2">
+                <span class="font-mono text-cyan-400 text-sm font-bold">visitor@muhaiman:~$</span>
+                <input 
+                  type="text" 
+                  id="terminal-input" 
+                  class="flex-1 bg-transparent border-none text-slate-100 font-mono text-sm focus:outline-none placeholder-slate-600"
+                  placeholder="type 'help', 'services', 'bio'..."
+                  autocomplete="off"
+                />
+                <button type="submit" class="text-xs font-mono px-3 py-1 rounded bg-cyan-500/20 text-cyan-400 hover:bg-cyan-500 hover:text-black transition-colors">
+                  EXEC
+                </button>
+              </form>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 3. SERVICES GRID                                                          -->
+    <!-- ========================================================================= -->
+    <section id="services" class="py-24 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Section Header -->
+        <div class="flex flex-col items-center text-center mb-16 space-y-3">
+          <span class="font-mono text-purple-400 text-xs tracking-widest uppercase px-3 py-1 rounded bg-purple-950/50 border border-purple-500/30">
+            // CAPABILITIES MATRIX
+          </span>
+          <h2 class="font-orbitron text-3xl sm:text-5xl font-black text-white">
+            CORE <span class="text-purple-400">SERVICES</span>
+          </h2>
+          <p class="font-space text-slate-400 max-w-xl text-sm sm:text-base">
+            High-leverage engineering services tailored for visionary tech companies, founders, and forward-thinking enterprises.
+          </p>
+          <div class="w-24 h-1 bg-gradient-to-r from-transparent via-purple-400 to-transparent"></div>
+        </div>
+
+        <!-- 5 Core Services Grid with Interactive 3D Tilt -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          
+          <!-- Service 1: Autonomous AI Agents -->
+          <div class="tilt-card group relative rounded-xl p-8 bg-slate-900/60 backdrop-blur-xl border border-slate-800 hover:border-cyan-400/80 transition-all duration-300 shadow-[0_4px_25px_rgba(0,0,0,0.5)]">
+            <div class="relative z-10 space-y-5">
+              <div class="w-14 h-14 rounded-lg bg-cyan-950/60 border border-cyan-400/60 flex items-center justify-center text-cyan-400 text-2xl group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(0,243,255,0.5)] transition-all">
+                <i class="fa-solid fa-robot"></i>
+              </div>
+              <div class="space-y-1">
+                <span class="font-mono text-xs text-cyan-400 font-semibold tracking-wider">01 // INTELLIGENCE</span>
+                <h3 class="font-orbitron text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">
+                  Autonomous AI Agents & Custom LLM Orchestration
+                </h3>
+              </div>
+              <p class="font-space text-slate-300 text-sm leading-relaxed">
+                Architecting multi-agent cooperative swarms, high-precision Retrieval-Augmented Generation (RAG) pipelines, and custom function-calling models tuned for autonomous operations and domain expertise.
+              </p>
+              <ul class="font-mono text-xs text-slate-400 space-y-2 border-t border-slate-800/80 pt-4">
+                <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-cyan-400"></i> Multi-Agent Swarms & LangChain</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-cyan-400"></i> Vector Embeddings & RAG Stores</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-cyan-400"></i> Local & Cloud LLM Deployment</li>
+              </ul>
+              <a href="#contact" class="inline-flex items-center gap-2 font-mono text-xs text-cyan-400 hover:text-white pt-2 group-hover:translate-x-1 transition-all">
+                <span>Request Agent Architecture</span> <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+            <!-- Glow backdrop -->
+            <div class="absolute inset-0 rounded-xl bg-gradient-to-br from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+          </div>
+
+          <!-- Service 2: Next-Gen Modern Websites -->
+          <div class="tilt-card group relative rounded-xl p-8 bg-slate-900/60 backdrop-blur-xl border border-slate-800 hover:border-purple-400/80 transition-all duration-300 shadow-[0_4px_25px_rgba(0,0,0,0.5)]">
+            <div class="relative z-10 space-y-5">
+              <div class="w-14 h-14 rounded-lg bg-purple-950/60 border border-purple-400/60 flex items-center justify-center text-purple-400 text-2xl group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(217,70,239,0.5)] transition-all">
+                <i class="fa-solid fa-globe"></i>
+              </div>
+              <div class="space-y-1">
+                <span class="font-mono text-xs text-purple-400 font-semibold tracking-wider">02 // FRONTEND</span>
+                <h3 class="font-orbitron text-xl font-bold text-white group-hover:text-purple-400 transition-colors">
+                  Next-Gen Modern Websites
+                </h3>
+              </div>
+              <p class="font-space text-slate-300 text-sm leading-relaxed">
+                Building responsive, lightning-fast digital flagships that convert. Engineered with React, Next.js, cutting-edge CSS architecture, seamless micro-interactions, and 100/100 Core Web Vitals.
+              </p>
+              <ul class="font-mono text-xs text-slate-400 space-y-2 border-t border-slate-800/80 pt-4">
+                <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-purple-400"></i> Next.js, React & Modern Tooling</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-purple-400"></i> Ultra-Fast SSR / SSG Hydration</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-purple-400"></i> Flawless Mobile & Tablet UX</li>
+              </ul>
+              <a href="#contact" class="inline-flex items-center gap-2 font-mono text-xs text-purple-400 hover:text-white pt-2 group-hover:translate-x-1 transition-all">
+                <span>Build Modern Flagship</span> <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+            <div class="absolute inset-0 rounded-xl bg-gradient-to-br from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+          </div>
+
+          <!-- Service 3: Interactive 3D Portfolio Websites -->
+          <div class="tilt-card group relative rounded-xl p-8 bg-slate-900/60 backdrop-blur-xl border border-slate-800 hover:border-cyan-400/80 transition-all duration-300 shadow-[0_4px_25px_rgba(0,0,0,0.5)]">
+            <div class="relative z-10 space-y-5">
+              <div class="w-14 h-14 rounded-lg bg-cyan-950/60 border border-cyan-400/60 flex items-center justify-center text-cyan-400 text-2xl group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(0,243,255,0.5)] transition-all">
+                <i class="fa-solid fa-cubes"></i>
+              </div>
+              <div class="space-y-1">
+                <span class="font-mono text-xs text-cyan-400 font-semibold tracking-wider">03 // 3D IMMERSION</span>
+                <h3 class="font-orbitron text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">
+                  Interactive 3D Portfolio Websites
+                </h3>
+              </div>
+              <p class="font-space text-slate-300 text-sm leading-relaxed">
+                Transforming standard flat landing pages into unforgettable 3D worlds. Leveraging Three.js, WebGL shaders, particle dynamics, and realistic lighting to captivate audiences and elevate brand authority.
+              </p>
+              <ul class="font-mono text-xs text-slate-400 space-y-2 border-t border-slate-800/80 pt-4">
+                <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-cyan-400"></i> Three.js & Custom GLSL Shaders</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-cyan-400"></i> Interactive 3D Orbit & Physics</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-cyan-400"></i> GPU-Optimized Mobile Rendering</li>
+              </ul>
+              <a href="#contact" class="inline-flex items-center gap-2 font-mono text-xs text-cyan-400 hover:text-white pt-2 group-hover:translate-x-1 transition-all">
+                <span>Commission 3D World</span> <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+            <div class="absolute inset-0 rounded-xl bg-gradient-to-br from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+          </div>
+
+          <!-- Service 4: Robust Scalable RESTful & GraphQL APIs -->
+          <div class="tilt-card group relative rounded-xl p-8 bg-slate-900/60 backdrop-blur-xl border border-slate-800 hover:border-emerald-400/80 transition-all duration-300 shadow-[0_4px_25px_rgba(0,0,0,0.5)]">
+            <div class="relative z-10 space-y-5">
+              <div class="w-14 h-14 rounded-lg bg-emerald-950/60 border border-emerald-400/60 flex items-center justify-center text-emerald-400 text-2xl group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(0,255,157,0.5)] transition-all">
+                <i class="fa-solid fa-network-wired"></i>
+              </div>
+              <div class="space-y-1">
+                <span class="font-mono text-xs text-emerald-400 font-semibold tracking-wider">04 // BACKEND & CLOUD</span>
+                <h3 class="font-orbitron text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">
+                  Robust Scalable RESTful & GraphQL APIs
+                </h3>
+              </div>
+              <p class="font-space text-slate-300 text-sm leading-relaxed">
+                Engineering high-throughput, microservice-ready backend APIs. Built with Node.js, Python, PostgreSQL, and Redis caching with strict OWASP defense, rate-limiting, and auto-generated Swagger documentation.
+              </p>
+              <ul class="font-mono text-xs text-slate-400 space-y-2 border-t border-slate-800/80 pt-4">
+                <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-emerald-400"></i> REST & GraphQL Architectures</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-emerald-400"></i> JWT, OAuth2 & Zero-Trust Auth</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-emerald-400"></i> Microservices & Containerized CI/CD</li>
+              </ul>
+              <a href="#contact" class="inline-flex items-center gap-2 font-mono text-xs text-emerald-400 hover:text-white pt-2 group-hover:translate-x-1 transition-all">
+                <span>Architect Scalable API</span> <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+            <div class="absolute inset-0 rounded-xl bg-gradient-to-br from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+          </div>
+
+          <!-- Service 5: Website Upgrades & Performance Tuning -->
+          <div class="tilt-card group relative rounded-xl p-8 bg-slate-900/60 backdrop-blur-xl border border-slate-800 hover:border-yellow-400/80 transition-all duration-300 shadow-[0_4px_25px_rgba(0,0,0,0.5)] md:col-span-2 lg:col-span-2">
+            <div class="relative z-10 space-y-5">
+              <div class="w-14 h-14 rounded-lg bg-yellow-950/60 border border-yellow-400/60 flex items-center justify-center text-yellow-400 text-2xl group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(245,158,11,0.5)] transition-all">
+                <i class="fa-solid fa-gauge-high"></i>
+              </div>
+              <div class="space-y-1">
+                <span class="font-mono text-xs text-yellow-400 font-semibold tracking-wider">05 // OPTIMIZATION & REFACTORING</span>
+                <h3 class="font-orbitron text-xl font-bold text-white group-hover:text-yellow-400 transition-colors">
+                  Website Upgrades, Modernization & Performance Tuning
+                </h3>
+              </div>
+              <p class="font-space text-slate-300 text-sm leading-relaxed max-w-3xl">
+                Diagnosing and upgrading sluggish legacy applications into modern, accessible, high-performance engines. We refactor technical debt, minimize bundle payloads, harden against cybersecurity threats, and supercharge Lighthouse scores to 95+.
+              </p>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 font-mono text-xs text-slate-400 border-t border-slate-800/80 pt-4">
+                <div class="flex items-center gap-2"><i class="fa-solid fa-bolt text-yellow-400"></i> Bundle Size Reduction</div>
+                <div class="flex items-center gap-2"><i class="fa-solid fa-shield-virus text-yellow-400"></i> Security Hardening & Audit</div>
+                <div class="flex items-center gap-2"><i class="fa-solid fa-chart-line text-yellow-400"></i> Lighthouse 95+ Guarantee</div>
+              </div>
+              <a href="#contact" class="inline-flex items-center gap-2 font-mono text-xs text-yellow-400 hover:text-white pt-2 group-hover:translate-x-1 transition-all">
+                <span>Modernize Existing Stack</span> <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+            <div class="absolute inset-0 rounded-xl bg-gradient-to-br from-yellow-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 4. INTERACTIVE SKILLS MATRIX                                              -->
+    <!-- ========================================================================= -->
+    <section id="skills" class="py-24 relative border-t border-cyan-500/10 bg-slate-950/50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Section Header -->
+        <div class="flex flex-col items-center text-center mb-16 space-y-3">
+          <span class="font-mono text-cyan-400 text-xs tracking-widest uppercase px-3 py-1 rounded bg-cyan-950/50 border border-cyan-500/30">
+            // TECHNICAL ARSENAL
+          </span>
+          <h2 class="font-orbitron text-3xl sm:text-5xl font-black text-white">
+            SKILLS & <span class="text-cyan-400">PROTOCOLS</span>
+          </h2>
+          <p class="font-space text-slate-400 max-w-xl text-sm sm:text-base">
+            Proficiencies across Artificial Intelligence, Full-Stack Architecture, Cyber Defense, and Visual Creative Systems.
+          </p>
+          <div class="w-24 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
+        </div>
+
+        <!-- Category Filter Tabs -->
+        <div class="flex flex-wrap items-center justify-center gap-3 mb-12">
+          <button class="skill-filter-btn active font-mono text-xs px-4 py-2 rounded-lg border border-cyan-400 bg-cyan-950/60 text-cyan-300 shadow-[0_0_15px_rgba(0,243,255,0.3)] transition-all" data-category="all">
+            [ ALL PROTOCOLS ]
+          </button>
+          <button class="skill-filter-btn font-mono text-xs px-4 py-2 rounded-lg border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-cyan-300 hover:border-cyan-500/50 transition-all" data-category="ai">
+            AI / MACHINE LEARNING
+          </button>
+          <button class="skill-filter-btn font-mono text-xs px-4 py-2 rounded-lg border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-cyan-300 hover:border-cyan-500/50 transition-all" data-category="web">
+            FULL-STACK WEB
+          </button>
+          <button class="skill-filter-btn font-mono text-xs px-4 py-2 rounded-lg border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-cyan-300 hover:border-cyan-500/50 transition-all" data-category="cyber">
+            CYBERSECURITY
+          </button>
+          <button class="skill-filter-btn font-mono text-xs px-4 py-2 rounded-lg border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-cyan-300 hover:border-cyan-500/50 transition-all" data-category="design">
+            GRAPHIC DESIGN & 3D
+          </button>
+        </div>
+
+        <!-- Skills Grid Container -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="skills-grid">
+          
+          <!-- Skill: Python -->
+          <div class="skill-card p-5 rounded-xl bg-slate-900/70 border border-slate-800/80 hover:border-cyan-400/80 transition-all duration-300" data-category="ai">
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-3">
+                <i class="devicon-python-plain colored text-3xl"></i>
+                <div>
+                  <h4 class="font-orbitron text-sm font-bold text-white">Python</h4>
+                  <span class="font-mono text-[10px] text-cyan-400">AI / Backend</span>
+                </div>
+              </div>
+              <span class="font-mono text-xs font-bold text-cyan-400">95%</span>
+            </div>
+            <div class="w-full bg-slate-950 rounded-full h-1.5 overflow-hidden">
+              <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-full rounded-full transition-all duration-1000" style="width: 95%"></div>
+            </div>
+          </div>
+
+          <!-- Skill: PyTorch / TensorFlow -->
+          <div class="skill-card p-5 rounded-xl bg-slate-900/70 border border-slate-800/80 hover:border-cyan-400/80 transition-all duration-300" data-category="ai">
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-3">
+                <i class="devicon-pytorch-original colored text-3xl"></i>
+                <div>
+                  <h4 class="font-orbitron text-sm font-bold text-white">PyTorch / TF</h4>
+                  <span class="font-mono text-[10px] text-cyan-400">Deep Learning</span>
+                </div>
+              </div>
+              <span class="font-mono text-xs font-bold text-cyan-400">90%</span>
+            </div>
+            <div class="w-full bg-slate-950 rounded-full h-1.5 overflow-hidden">
+              <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-full rounded-full transition-all duration-1000" style="width: 90%"></div>
+            </div>
+          </div>
+
+          <!-- Skill: LangChain & Autonomous Agents -->
+          <div class="skill-card p-5 rounded-xl bg-slate-900/70 border border-slate-800/80 hover:border-cyan-400/80 transition-all duration-300" data-category="ai">
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-3">
+                <i class="fa-solid fa-network-wired text-cyan-400 text-3xl"></i>
+                <div>
+                  <h4 class="font-orbitron text-sm font-bold text-white">LangChain / RAG</h4>
+                  <span class="font-mono text-[10px] text-cyan-400">Agent Swarms</span>
+                </div>
+              </div>
+              <span class="font-mono text-xs font-bold text-cyan-400">93%</span>
+            </div>
+            <div class="w-full bg-slate-950 rounded-full h-1.5 overflow-hidden">
+              <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-full rounded-full transition-all duration-1000" style="width: 93%"></div>
+            </div>
+          </div>
+
+          <!-- Skill: React & Next.js -->
+          <div class="skill-card p-5 rounded-xl bg-slate-900/70 border border-slate-800/80 hover:border-purple-400/80 transition-all duration-300" data-category="web">
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-3">
+                <i class="devicon-react-original colored text-3xl"></i>
+                <div>
+                  <h4 class="font-orbitron text-sm font-bold text-white">React / Next.js</h4>
+                  <span class="font-mono text-[10px] text-purple-400">Modern Frontend</span>
+                </div>
+              </div>
+              <span class="font-mono text-xs font-bold text-purple-400">96%</span>
+            </div>
+            <div class="w-full bg-slate-950 rounded-full h-1.5 overflow-hidden">
+              <div class="bg-gradient-to-r from-purple-500 to-pink-500 h-full rounded-full transition-all duration-1000" style="width: 96%"></div>
+            </div>
+          </div>
+
+          <!-- Skill: Three.js & WebGL -->
+          <div class="skill-card p-5 rounded-xl bg-slate-900/70 border border-slate-800/80 hover:border-cyan-400/80 transition-all duration-300" data-category="web design">
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-3">
+                <i class="devicon-threejs-original text-white text-3xl"></i>
+                <div>
+                  <h4 class="font-orbitron text-sm font-bold text-white">Three.js / WebGL</h4>
+                  <span class="font-mono text-[10px] text-cyan-400">3D Interactive</span>
+                </div>
+              </div>
+              <span class="font-mono text-xs font-bold text-cyan-400">92%</span>
+            </div>
+            <div class="w-full bg-slate-950 rounded-full h-1.5 overflow-hidden">
+              <div class="bg-gradient-to-r from-cyan-400 to-teal-400 h-full rounded-full transition-all duration-1000" style="width: 92%"></div>
+            </div>
+          </div>
+
+          <!-- Skill: Node.js & GraphQL -->
+          <div class="skill-card p-5 rounded-xl bg-slate-900/70 border border-slate-800/80 hover:border-purple-400/80 transition-all duration-300" data-category="web">
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-3">
+                <i class="devicon-nodejs-plain colored text-3xl"></i>
+                <div>
+                  <h4 class="font-orbitron text-sm font-bold text-white">Node.js / GraphQL</h4>
+                  <span class="font-mono text-[10px] text-purple-400">High-Concurrency</span>
+                </div>
+              </div>
+              <span class="font-mono text-xs font-bold text-purple-400">91%</span>
+            </div>
+            <div class="w-full bg-slate-950 rounded-full h-1.5 overflow-hidden">
+              <div class="bg-gradient-to-r from-purple-500 to-blue-500 h-full rounded-full transition-all duration-1000" style="width: 91%"></div>
+            </div>
+          </div>
+
+          <!-- Skill: Penetration Testing & OWASP -->
+          <div class="skill-card p-5 rounded-xl bg-slate-900/70 border border-slate-800/80 hover:border-emerald-400/80 transition-all duration-300" data-category="cyber">
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-3">
+                <i class="fa-solid fa-shield-virus text-emerald-400 text-3xl"></i>
+                <div>
+                  <h4 class="font-orbitron text-sm font-bold text-white">Pen-Testing</h4>
+                  <span class="font-mono text-[10px] text-emerald-400">OWASP Top 10</span>
+                </div>
+              </div>
+              <span class="font-mono text-xs font-bold text-emerald-400">89%</span>
+            </div>
+            <div class="w-full bg-slate-950 rounded-full h-1.5 overflow-hidden">
+              <div class="bg-gradient-to-r from-emerald-500 to-green-400 h-full rounded-full transition-all duration-1000" style="width: 89%"></div>
+            </div>
+          </div>
+
+          <!-- Skill: Network Defense & Wireshark -->
+          <div class="skill-card p-5 rounded-xl bg-slate-900/70 border border-slate-800/80 hover:border-emerald-400/80 transition-all duration-300" data-category="cyber">
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-3">
+                <i class="devicon-linux-plain text-yellow-400 text-3xl"></i>
+                <div>
+                  <h4 class="font-orbitron text-sm font-bold text-white">Linux & Hardening</h4>
+                  <span class="font-mono text-[10px] text-emerald-400">Zero-Trust Ops</span>
+                </div>
+              </div>
+              <span class="font-mono text-xs font-bold text-emerald-400">94%</span>
+            </div>
+            <div class="w-full bg-slate-950 rounded-full h-1.5 overflow-hidden">
+              <div class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full rounded-full transition-all duration-1000" style="width: 94%"></div>
+            </div>
+          </div>
+
+          <!-- Skill: Docker & Cloud DevOps -->
+          <div class="skill-card p-5 rounded-xl bg-slate-900/70 border border-slate-800/80 hover:border-cyan-400/80 transition-all duration-300" data-category="web cyber">
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-3">
+                <i class="devicon-docker-plain colored text-3xl"></i>
+                <div>
+                  <h4 class="font-orbitron text-sm font-bold text-white">Docker & CI/CD</h4>
+                  <span class="font-mono text-[10px] text-cyan-400">Containerization</span>
+                </div>
+              </div>
+              <span class="font-mono text-xs font-bold text-cyan-400">92%</span>
+            </div>
+            <div class="w-full bg-slate-950 rounded-full h-1.5 overflow-hidden">
+              <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-full rounded-full transition-all duration-1000" style="width: 92%"></div>
+            </div>
+          </div>
+
+          <!-- Skill: Blender & 3D Modeling -->
+          <div class="skill-card p-5 rounded-xl bg-slate-900/70 border border-slate-800/80 hover:border-yellow-400/80 transition-all duration-300" data-category="design">
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-3">
+                <i class="devicon-blender-original colored text-3xl"></i>
+                <div>
+                  <h4 class="font-orbitron text-sm font-bold text-white">Blender 3D</h4>
+                  <span class="font-mono text-[10px] text-yellow-400">Spatial Geometry</span>
+                </div>
+              </div>
+              <span class="font-mono text-xs font-bold text-yellow-400">88%</span>
+            </div>
+            <div class="w-full bg-slate-950 rounded-full h-1.5 overflow-hidden">
+              <div class="bg-gradient-to-r from-yellow-500 to-amber-400 h-full rounded-full transition-all duration-1000" style="width: 88%"></div>
+            </div>
+          </div>
+
+          <!-- Skill: Figma & UI/UX Systems -->
+          <div class="skill-card p-5 rounded-xl bg-slate-900/70 border border-slate-800/80 hover:border-pink-400/80 transition-all duration-300" data-category="design">
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-3">
+                <i class="devicon-figma-plain colored text-3xl"></i>
+                <div>
+                  <h4 class="font-orbitron text-sm font-bold text-white">Figma & UI/UX</h4>
+                  <span class="font-mono text-[10px] text-pink-400">Design Systems</span>
+                </div>
+              </div>
+              <span class="font-mono text-xs font-bold text-pink-400">95%</span>
+            </div>
+            <div class="w-full bg-slate-950 rounded-full h-1.5 overflow-hidden">
+              <div class="bg-gradient-to-r from-pink-500 to-purple-500 h-full rounded-full transition-all duration-1000" style="width: 95%"></div>
+            </div>
+          </div>
+
+          <!-- Skill: Photoshop & Graphic Design -->
+          <div class="skill-card p-5 rounded-xl bg-slate-900/70 border border-slate-800/80 hover:border-blue-400/80 transition-all duration-300" data-category="design">
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-3">
+                <i class="devicon-photoshop-plain colored text-3xl"></i>
+                <div>
+                  <h4 class="font-orbitron text-sm font-bold text-white">Photoshop & AI</h4>
+                  <span class="font-mono text-[10px] text-blue-400">Visual Branding</span>
+                </div>
+              </div>
+              <span class="font-mono text-xs font-bold text-blue-400">93%</span>
+            </div>
+            <div class="w-full bg-slate-950 rounded-full h-1.5 overflow-hidden">
+              <div class="bg-gradient-to-r from-blue-500 to-indigo-500 h-full rounded-full transition-all duration-1000" style="width: 93%"></div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 5. PROJECT SHOWCASE                                                       -->
+    <!-- ========================================================================= -->
+    <section id="projects" class="py-24 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Section Header -->
+        <div class="flex flex-col items-center text-center mb-16 space-y-3">
+          <span class="font-mono text-cyan-400 text-xs tracking-widest uppercase px-3 py-1 rounded bg-cyan-950/50 border border-cyan-500/30">
+            // MISSION ARCHIVES
+          </span>
+          <h2 class="font-orbitron text-3xl sm:text-5xl font-black text-white">
+            FEATURED <span class="text-cyan-400">PROJECTS</span>
+          </h2>
+          <p class="font-space text-slate-400 max-w-xl text-sm sm:text-base">
+            Engineered systems demonstrating AI autonomy, high-speed 3D WebGL rendering, and zero-trust security postures.
+          </p>
+          <div class="w-24 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="flex flex-wrap items-center justify-center gap-3 mb-12">
+          <button class="project-filter-btn active font-mono text-xs px-4 py-2 rounded-lg border border-cyan-400 bg-cyan-950/60 text-cyan-300 shadow-[0_0_15px_rgba(0,243,255,0.3)] transition-all" data-filter="all">
+            [ ALL MISSIONS ]
+          </button>
+          <button class="project-filter-btn font-mono text-xs px-4 py-2 rounded-lg border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-cyan-300 hover:border-cyan-500/50 transition-all" data-filter="ai">
+            AI & LLM
+          </button>
+          <button class="project-filter-btn font-mono text-xs px-4 py-2 rounded-lg border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-cyan-300 hover:border-cyan-500/50 transition-all" data-filter="3d">
+            3D WEB & WEBGL
+          </button>
+          <button class="project-filter-btn font-mono text-xs px-4 py-2 rounded-lg border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-cyan-300 hover:border-cyan-500/50 transition-all" data-filter="fullstack">
+            FULL-STACK
+          </button>
+          <button class="project-filter-btn font-mono text-xs px-4 py-2 rounded-lg border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-cyan-300 hover:border-cyan-500/50 transition-all" data-filter="cyber">
+            CYBER DEFENSE
+          </button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+          
+          <!-- Project 1: AegisAgent AI -->
+          <div class="project-card rounded-xl overflow-hidden bg-slate-900/60 border border-slate-800 hover:border-cyan-400/80 transition-all duration-300 flex flex-col group shadow-[0_4px_25px_rgba(0,0,0,0.4)]" data-category="ai">
+            <div class="relative h-48 bg-gradient-to-br from-slate-950 via-cyan-950/40 to-slate-900 overflow-hidden flex items-center justify-center p-6 border-b border-slate-800">
+              <i class="fa-solid fa-microchip text-6xl text-cyan-400/60 group-hover:scale-110 group-hover:text-cyan-300 transition-all duration-500"></i>
+              <div class="absolute top-3 left-3 font-mono text-[10px] px-2 py-0.5 rounded bg-cyan-950/80 border border-cyan-400/50 text-cyan-300">
+                AI AGENT SWARM
+              </div>
+              <div class="absolute top-3 right-3 font-mono text-[10px] text-emerald-400">
+                ● PROD READY
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+              <div class="space-y-2">
+                <h3 class="font-orbitron text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">
+                  AegisAgent Multi-LLM Swarm
+                </h3>
+                <p class="font-space text-slate-300 text-xs sm:text-sm leading-relaxed">
+                  Autonomous enterprise agentic pipeline orchestrating multi-agent collaboration with long-term vector memory, tool calling, and automated real-time verification.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-1.5 pt-2">
+                <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-slate-800 text-cyan-300">Python</span>
+                <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-slate-800 text-cyan-300">LangChain</span>
+                <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-slate-800 text-cyan-300">FastAPI</span>
+                <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-slate-800 text-cyan-300">ChromaDB</span>
+              </div>
+              <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+                <button class="open-modal-btn font-mono text-xs text-cyan-400 hover:text-white flex items-center gap-1.5" data-project="0">
+                  <i class="fa-solid fa-expand text-xs"></i> Inspect Blueprint
+                </button>
+                <div class="flex items-center gap-2">
+                  <a href="https://github.com/muhaimanawan" target="_blank" rel="noopener noreferrer" class="p-2 rounded bg-slate-800 hover:text-cyan-400 text-slate-300 transition-colors" title="GitHub Source">
+                    <i class="fa-brands fa-github text-sm"></i>
+                  </a>
+                  <a href="https://github.com/muhaimanawan" target="_blank" rel="noopener noreferrer" class="p-2 rounded bg-slate-800 hover:text-cyan-400 text-slate-300 transition-colors" title="Live Preview">
+                    <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2: NeonVerse 3D WebGL -->
+          <div class="project-card rounded-xl overflow-hidden bg-slate-900/60 border border-slate-800 hover:border-purple-400/80 transition-all duration-300 flex flex-col group shadow-[0_4px_25px_rgba(0,0,0,0.4)]" data-category="3d">
+            <div class="relative h-48 bg-gradient-to-br from-slate-950 via-purple-950/40 to-slate-900 overflow-hidden flex items-center justify-center p-6 border-b border-slate-800">
+              <i class="fa-solid fa-cubes text-6xl text-purple-400/60 group-hover:scale-110 group-hover:text-purple-300 transition-all duration-500"></i>
+              <div class="absolute top-3 left-3 font-mono text-[10px] px-2 py-0.5 rounded bg-purple-950/80 border border-purple-400/50 text-purple-300">
+                3D SPATIAL WEBGL
+              </div>
+              <div class="absolute top-3 right-3 font-mono text-[10px] text-cyan-400">
+                ● 60 FPS
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+              <div class="space-y-2">
+                <h3 class="font-orbitron text-lg font-bold text-white group-hover:text-purple-400 transition-colors">
+                  NeonVerse 3D Cyber Engine
+                </h3>
+                <p class="font-space text-slate-300 text-xs sm:text-sm leading-relaxed">
+                  Interactive WebGL showroom featuring custom GLSL lighting shaders, real-time particle dynamics, and responsive physics-driven interactions.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-1.5 pt-2">
+                <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-slate-800 text-purple-300">Three.js</span>
+                <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-slate-800 text-purple-300">GLSL</span>
+                <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-slate-800 text-purple-300">TypeScript</span>
+                <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-slate-800 text-purple-300">Cannon.js</span>
+              </div>
+              <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+                <button class="open-modal-btn font-mono text-xs text-purple-400 hover:text-white flex items-center gap-1.5" data-project="1">
+                  <i class="fa-solid fa-expand text-xs"></i> Inspect Blueprint
+                </button>
+                <div class="flex items-center gap-2">
+                  <a href="https://github.com/muhaimanawan" target="_blank" rel="noopener noreferrer" class="p-2 rounded bg-slate-800 hover:text-purple-400 text-slate-300 transition-colors" title="GitHub Source">
+                    <i class="fa-brands fa-github text-sm"></i>
+                  </a>
+                  <a href="https://github.com/muhaimanawan" target="_blank" rel="noopener noreferrer" class="p-2 rounded bg-slate-800 hover:text-purple-400 text-slate-300 transition-colors" title="Live Preview">
+                    <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3: NexusAPI Distributed Gateway -->
+          <div class="project-card rounded-xl overflow-hidden bg-slate-900/60 border border-slate-800 hover:border-emerald-400/80 transition-all duration-300 flex flex-col group shadow-[0_4px_25px_rgba(0,0,0,0.4)]" data-category="fullstack">
+            <div class="relative h-48 bg-gradient-to-br from-slate-950 via-emerald-950/40 to-slate-900 overflow-hidden flex items-center justify-center p-6 border-b border-slate-800">
+              <i class="fa-solid fa-network-wired text-6xl text-emerald-400/60 group-hover:scale-110 group-hover:text-emerald-300 transition-all duration-500"></i>
+              <div class="absolute top-3 left-3 font-mono text-[10px] px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-400/50 text-emerald-300">
+                DISTRIBUTED API
+              </div>
+              <div class="absolute top-3 right-3 font-mono text-[10px] text-yellow-400">
+                ● 100K REQ/S
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+              <div class="space-y-2">
+                <h3 class="font-orbitron text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">
+                  NexusAPI High-Throughput Gateway
+                </h3>
+                <p class="font-space text-slate-300 text-xs sm:text-sm leading-relaxed">
+                  Scalable GraphQL and REST reverse proxy gateway featuring Redis-backed distributed rate-limiting, JWT authentication, and automatic schema stitching.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-1.5 pt-2">
+                <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-slate-800 text-emerald-300">Node.js</span>
+                <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-slate-800 text-emerald-300">GraphQL</span>
+                <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-slate-800 text-emerald-300">Redis</span>
+                <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-slate-800 text-emerald-300">Docker</span>
+              </div>
+              <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+                <button class="open-modal-btn font-mono text-xs text-emerald-400 hover:text-white flex items-center gap-1.5" data-project="2">
+                  <i class="fa-solid fa-expand text-xs"></i> Inspect Blueprint
+                </button>
+                <div class="flex items-center gap-2">
+                  <a href="https://github.com/muhaimanawan" target="_blank" rel="noopener noreferrer" class="p-2 rounded bg-slate-800 hover:text-emerald-400 text-slate-300 transition-colors" title="GitHub Source">
+                    <i class="fa-brands fa-github text-sm"></i>
+                  </a>
+                  <a href="https://github.com/muhaimanawan" target="_blank" rel="noopener noreferrer" class="p-2 rounded bg-slate-800 hover:text-emerald-400 text-slate-300 transition-colors" title="Live Preview">
+                    <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4: CyberSentinel Threat SIEM -->
+          <div class="project-card rounded-xl overflow-hidden bg-slate-900/60 border border-slate-800 hover:border-emerald-400/80 transition-all duration-300 flex flex-col group shadow-[0_4px_25px_rgba(0,0,0,0.4)]" data-category="cyber">
+            <div class="relative h-48 bg-gradient-to-br from-slate-950 via-emerald-950/40 to-slate-900 overflow-hidden flex items-center justify-center p-6 border-b border-slate-800">
+              <i class="fa-solid fa-shield-halved text-6xl text-emerald-400/60 group-hover:scale-110 group-hover:text-emerald-300 transition-all duration-500"></i>
+              <div class="absolute top-3 left-3 font-mono text-[10px] px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-400/50 text-emerald-300">
+                CYBERSECURITY SIEM
+              </div>
+              <div class="absolute top-3 right-3 font-mono text-[10px] text-emerald-400">
+                ● ZERO-TRUST
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+              <div class="space-y-2">
+                <h3 class="font-orbitron text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">
+                  CyberSentinel Vulnerability Engine
+                </h3>
+                <p class="font-space text-slate-300 text-xs sm:text-sm leading-relaxed">
+                  Real-time network anomaly detector and automated vulnerability auditing platform integrating Scapy packet analysis and heuristic threat mitigation.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-1.5 pt-2">
+                <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-slate-800 text-emerald-300">Python</span>
+                <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-slate-800 text-emerald-300">Wireshark</span>
+                <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-slate-800 text-emerald-300">Linux</span>
+                <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-slate-800 text-emerald-300">OWASP</span>
+              </div>
+              <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+                <button class="open-modal-btn font-mono text-xs text-emerald-400 hover:text-white flex items-center gap-1.5" data-project="3">
+                  <i class="fa-solid fa-expand text-xs"></i> Inspect Blueprint
+                </button>
+                <div class="flex items-center gap-2">
+                  <a href="https://github.com/muhaimanawan" target="_blank" rel="noopener noreferrer" class="p-2 rounded bg-slate-800 hover:text-emerald-400 text-slate-300 transition-colors" title="GitHub Source">
+                    <i class="fa-brands fa-github text-sm"></i>
+                  </a>
+                  <a href="https://github.com/muhaimanawan" target="_blank" rel="noopener noreferrer" class="p-2 rounded bg-slate-800 hover:text-emerald-400 text-slate-300 transition-colors" title="Live Preview">
+                    <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 5: SynapseStudio Generative Brand Platform -->
+          <div class="project-card rounded-xl overflow-hidden bg-slate-900/60 border border-slate-800 hover:border-pink-400/80 transition-all duration-300 flex flex-col group shadow-[0_4px_25px_rgba(0,0,0,0.4)]" data-category="ai">
+            <div class="relative h-48 bg-gradient-to-br from-slate-950 via-pink-950/40 to-slate-900 overflow-hidden flex items-center justify-center p-6 border-b border-slate-800">
+              <i class="fa-solid fa-palette text-6xl text-pink-400/60 group-hover:scale-110 group-hover:text-pink-300 transition-all duration-500"></i>
+              <div class="absolute top-3 left-3 font-mono text-[10px] px-2 py-0.5 rounded bg-pink-950/80 border border-pink-400/50 text-pink-300">
+                GEN-AI DESIGN
+              </div>
+              <div class="absolute top-3 right-3 font-mono text-[10px] text-fuchsia-400">
+                ● BESPOKE UI
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+              <div class="space-y-2">
+                <h3 class="font-orbitron text-lg font-bold text-white group-hover:text-pink-400 transition-colors">
+                  SynapseStudio Creative Workspace
+                </h3>
+                <p class="font-space text-slate-300 text-xs sm:text-sm leading-relaxed">
+                  Hybrid generative design canvas marrying Stable Diffusion image models with HTML5 canvas vector tooling for rapid UI/UX branding creation.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-1.5 pt-2">
+                <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-slate-800 text-pink-300">React</span>
+                <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-slate-800 text-pink-300">Diffusers</span>
+                <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-slate-800 text-pink-300">Tailwind</span>
+                <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-slate-800 text-pink-300">WebSockets</span>
+              </div>
+              <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+                <button class="open-modal-btn font-mono text-xs text-pink-400 hover:text-white flex items-center gap-1.5" data-project="4">
+                  <i class="fa-solid fa-expand text-xs"></i> Inspect Blueprint
+                </button>
+                <div class="flex items-center gap-2">
+                  <a href="https://github.com/muhaimanawan" target="_blank" rel="noopener noreferrer" class="p-2 rounded bg-slate-800 hover:text-pink-400 text-slate-300 transition-colors" title="GitHub Source">
+                    <i class="fa-brands fa-github text-sm"></i>
+                  </a>
+                  <a href="https://github.com/muhaimanawan" target="_blank" rel="noopener noreferrer" class="p-2 rounded bg-slate-800 hover:text-pink-400 text-slate-300 transition-colors" title="Live Preview">
+                    <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 6: TitanCloud Enterprise Modernizer -->
+          <div class="project-card rounded-xl overflow-hidden bg-slate-900/60 border border-slate-800 hover:border-yellow-400/80 transition-all duration-300 flex flex-col group shadow-[0_4px_25px_rgba(0,0,0,0.4)]" data-category="fullstack">
+            <div class="relative h-48 bg-gradient-to-br from-slate-950 via-yellow-950/40 to-slate-900 overflow-hidden flex items-center justify-center p-6 border-b border-slate-800">
+              <i class="fa-solid fa-gauge-simple-high text-6xl text-yellow-400/60 group-hover:scale-110 group-hover:text-yellow-300 transition-all duration-500"></i>
+              <div class="absolute top-3 left-3 font-mono text-[10px] px-2 py-0.5 rounded bg-yellow-950/80 border border-yellow-400/50 text-yellow-300">
+                PERF OVERHAUL
+              </div>
+              <div class="absolute top-3 right-3 font-mono text-[10px] text-emerald-400">
+                ● 100/100 LIGHTHOUSE
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+              <div class="space-y-2">
+                <h3 class="font-orbitron text-lg font-bold text-white group-hover:text-yellow-400 transition-colors">
+                  TitanCloud Web Architecture Overhaul
+                </h3>
+                <p class="font-space text-slate-300 text-xs sm:text-sm leading-relaxed">
+                  Refactored monolithic legacy enterprise portal into modular micro-frontends, reducing total bundle size by 78% and elevating Core Web Vitals to top decile.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-1.5 pt-2">
+                <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-slate-800 text-yellow-300">Next.js 14</span>
+                <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-slate-800 text-yellow-300">Turbopack</span>
+                <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-slate-800 text-yellow-300">Redis</span>
+                <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-slate-800 text-yellow-300">Lighthouse 99</span>
+              </div>
+              <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+                <button class="open-modal-btn font-mono text-xs text-yellow-400 hover:text-white flex items-center gap-1.5" data-project="5">
+                  <i class="fa-solid fa-expand text-xs"></i> Inspect Blueprint
+                </button>
+                <div class="flex items-center gap-2">
+                  <a href="https://github.com/muhaimanawan" target="_blank" rel="noopener noreferrer" class="p-2 rounded bg-slate-800 hover:text-yellow-400 text-slate-300 transition-colors" title="GitHub Source">
+                    <i class="fa-brands fa-github text-sm"></i>
+                  </a>
+                  <a href="https://github.com/muhaimanawan" target="_blank" rel="noopener noreferrer" class="p-2 rounded bg-slate-800 hover:text-yellow-400 text-slate-300 transition-colors" title="Live Preview">
+                    <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 6. CONTACT & CONNECT SECTION                                              -->
+    <!-- ========================================================================= -->
+    <section id="contact" class="py-24 relative border-t border-cyan-500/10 bg-slate-950/60">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Section Header -->
+        <div class="flex flex-col items-center text-center mb-16 space-y-3">
+          <span class="font-mono text-emerald-400 text-xs tracking-widest uppercase px-3 py-1 rounded bg-emerald-950/50 border border-emerald-500/30">
+            // ESTABLISH UPLINK
+          </span>
+          <h2 class="font-orbitron text-3xl sm:text-5xl font-black text-white">
+            CONTACT & <span class="text-emerald-400">CONNECT</span>
+          </h2>
+          <p class="font-space text-slate-400 max-w-xl text-sm sm:text-base">
+            Have a project in mind, need autonomous AI architecture, or want to build a stunning 3D flagship? Let's connect.
+          </p>
+          <div class="w-24 h-1 bg-gradient-to-r from-transparent via-emerald-400 to-transparent"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          <!-- Left Column: Verified Social & Direct Uplink Cards -->
+          <div class="lg:col-span-5 space-y-6">
+            
+            <div class="cyber-glass-card p-6 rounded-xl border border-slate-800 space-y-6">
+              
+              <div class="flex items-center gap-3 pb-4 border-b border-slate-800">
+                <i class="fa-solid fa-satellite-dish text-2xl text-cyan-400 animate-pulse"></i>
+                <div>
+                  <h3 class="font-orbitron text-lg font-bold text-white">Direct Communication Channels</h3>
+                  <p class="font-mono text-xs text-slate-400">Response Window: &lt; 24 Hours</p>
+                </div>
+              </div>
+
+              <!-- Verified LinkedIn Button Card -->
+              <a href="https://www.linkedin.com/in/atta-ul-muhaiman" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-4 rounded-lg bg-slate-900/80 border border-slate-800 hover:border-cyan-400 transition-all shadow-[0_0_15px_rgba(0,0,0,0.3)]">
+                <div class="flex items-center gap-3.5">
+                  <div class="w-10 h-10 rounded-lg bg-[#0077b5]/20 border border-[#0077b5]/60 flex items-center justify-center text-[#0077b5] text-xl group-hover:scale-110 transition-transform">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-orbitron text-sm font-bold text-white group-hover:text-cyan-400 transition-colors">LinkedIn Profile</h4>
+                    <p class="font-mono text-xs text-slate-400">in/atta-ul-muhaiman</p>
+                  </div>
+                </div>
+                <div class="text-xs font-mono text-cyan-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                  <span>Connect</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                </div>
+              </a>
+
+              <!-- Verified GitHub Button Card -->
+              <a href="https://github.com/muhaimanawan" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-4 rounded-lg bg-slate-900/80 border border-slate-800 hover:border-purple-400 transition-all shadow-[0_0_15px_rgba(0,0,0,0.3)]">
+                <div class="flex items-center gap-3.5">
+                  <div class="w-10 h-10 rounded-lg bg-purple-950/40 border border-purple-500/60 flex items-center justify-center text-purple-400 text-xl group-hover:scale-110 transition-transform">
+                    <i class="fa-brands fa-github"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-orbitron text-sm font-bold text-white group-hover:text-purple-400 transition-colors">GitHub Repository</h4>
+                    <p class="font-mono text-xs text-slate-400">github.com/muhaimanawan</p>
+                  </div>
+                </div>
+                <div class="text-xs font-mono text-purple-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                  <span>Follow</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                </div>
+              </a>
+
+              <!-- Direct Email Card with One-Click Copy -->
+              <div class="p-4 rounded-lg bg-slate-900/80 border border-slate-800 flex items-center justify-between">
+                <div class="flex items-center gap-3.5">
+                  <div class="w-10 h-10 rounded-lg bg-cyan-950/40 border border-cyan-500/60 flex items-center justify-center text-cyan-400 text-lg">
+                    <i class="fa-solid fa-envelope"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-orbitron text-sm font-bold text-white">Direct Email</h4>
+                    <p class="font-mono text-xs text-slate-400" id="email-address">attaulmuhaiman@gmail.com</p>
+                  </div>
+                </div>
+                <button id="copy-email-btn" class="font-mono text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300 hover:text-cyan-400 hover:bg-cyan-950/60 border border-slate-700 hover:border-cyan-500/40 transition-colors" title="Copy Email to Clipboard">
+                  <i class="fa-regular fa-copy mr-1"></i> Copy
+                </button>
+              </div>
+
+              <!-- Verified WhatsApp Direct Uplink Card -->
+              <a href="https://wa.me/923021173377?text=Hello%20Muhaiman,%20I%20reviewed%20your%20portfolio%20and%20would%20like%20to%20connect!" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-4 rounded-lg bg-slate-900/80 border border-slate-800 hover:border-emerald-400 transition-all shadow-[0_0_15px_rgba(0,0,0,0.3)]">
+                <div class="flex items-center gap-3.5">
+                  <div class="w-10 h-10 rounded-lg bg-emerald-950/40 border border-emerald-500/60 flex items-center justify-center text-emerald-400 text-xl group-hover:scale-110 transition-transform">
+                    <i class="fa-brands fa-whatsapp"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-orbitron text-sm font-bold text-white group-hover:text-emerald-400 transition-colors">WhatsApp Direct</h4>
+                    <p class="font-mono text-xs text-slate-400">+92 302 1173377 (03021173377)</p>
+                  </div>
+                </div>
+                <div class="text-xs font-mono text-emerald-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                  <span>Chat Now</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                </div>
+              </a>
+
+              <!-- Location & Timezone -->
+              <div class="p-4 rounded-lg bg-slate-900/50 border border-slate-800/80 flex items-center justify-between font-mono text-xs text-slate-400">
+                <div class="flex items-center gap-2">
+                  <i class="fa-solid fa-location-dot text-cyan-400"></i>
+                  <span>Location: Global / Remote</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <i class="fa-solid fa-clock text-purple-400"></i>
+                  <span id="live-user-time">UTC+5 (Active)</span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Right Column: Interactive Contact Form with Validation -->
+          <div class="lg:col-span-7">
+            
+            <div class="cyber-glass-card p-8 rounded-xl border border-slate-800 hover:border-emerald-500/50 transition-all shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+              
+              <div class="flex items-center justify-between pb-6 mb-6 border-b border-slate-800">
+                <div>
+                  <h3 class="font-orbitron text-xl font-bold text-white">Send Encrypted Message</h3>
+                  <p class="font-mono text-xs text-slate-400 mt-1">Direct pipeline to Muhaiman's inbox</p>
+                </div>
+                <div class="font-mono text-[10px] text-emerald-400 px-2.5 py-1 rounded bg-emerald-950/60 border border-emerald-500/40 flex items-center gap-1.5">
+                  <i class="fa-solid fa-lock text-[10px]"></i> TLS 1.3 SECURED
+                </div>
+              </div>
+
+              <!-- Form Element -->
+              <form id="contact-form" class="space-y-6" novalidate>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  
+                  <!-- Name Field -->
+                  <div class="space-y-2">
+                    <label for="contact-name" class="font-mono text-xs text-slate-300 flex items-center justify-between">
+                      <span>YOUR NAME <span class="text-cyan-400">*</span></span>
+                      <span class="text-[10px] text-red-400 hidden" id="name-error">Min 2 characters</span>
+                    </label>
+                    <div class="relative">
+                      <input 
+                        type="text" 
+                        id="contact-name" 
+                        name="name" 
+                        required 
+                        placeholder="John Doe" 
+                        class="w-full bg-slate-950/80 border border-slate-700 focus:border-cyan-400 rounded-lg px-4 py-3 text-slate-100 font-space text-sm focus:outline-none focus:ring-1 focus:ring-cyan-400 transition-colors"
+                      />
+                      <i class="fa-solid fa-user absolute right-3.5 top-3.5 text-slate-500 text-sm"></i>
+                    </div>
+                  </div>
+
+                  <!-- Email Field -->
+                  <div class="space-y-2">
+                    <label for="contact-email" class="font-mono text-xs text-slate-300 flex items-center justify-between">
+                      <span>YOUR EMAIL <span class="text-cyan-400">*</span></span>
+                      <span class="text-[10px] text-red-400 hidden" id="email-error">Invalid email address</span>
+                    </label>
+                    <div class="relative">
+                      <input 
+                        type="email" 
+                        id="contact-email" 
+                        name="email" 
+                        required 
+                        placeholder="john@example.com" 
+                        class="w-full bg-slate-950/80 border border-slate-700 focus:border-cyan-400 rounded-lg px-4 py-3 text-slate-100 font-space text-sm focus:outline-none focus:ring-1 focus:ring-cyan-400 transition-colors"
+                      />
+                      <i class="fa-solid fa-at absolute right-3.5 top-3.5 text-slate-500 text-sm"></i>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  
+                  <!-- Service Selection Dropdown -->
+                  <div class="space-y-2">
+                    <label for="contact-service" class="font-mono text-xs text-slate-300">
+                      INTERESTED SERVICE <span class="text-cyan-400">*</span>
+                    </label>
+                    <select 
+                      id="contact-service" 
+                      name="service" 
+                      class="w-full bg-slate-950/80 border border-slate-700 focus:border-cyan-400 rounded-lg px-4 py-3 text-slate-100 font-space text-sm focus:outline-none focus:ring-1 focus:ring-cyan-400 transition-colors"
+                    >
+                      <option value="ai-agents">Autonomous AI Agents & Custom LLM</option>
+                      <option value="next-gen-web">Next-Gen Modern Websites</option>
+                      <option value="3d-portfolio">Interactive 3D Portfolio Websites</option>
+                      <option value="apis">Robust Scalable REST & GraphQL APIs</option>
+                      <option value="modernization">Website Upgrades & Performance Tuning</option>
+                      <option value="consulting">General Tech Consultation / Other</option>
+                    </select>
+                  </div>
+
+                  <!-- Project Timeline / Budget -->
+                  <div class="space-y-2">
+                    <label for="contact-budget" class="font-mono text-xs text-slate-300">
+                      PROJECT BUDGET RANGE
+                    </label>
+                    <select 
+                      id="contact-budget" 
+                      name="budget" 
+                      class="w-full bg-slate-950/80 border border-slate-700 focus:border-cyan-400 rounded-lg px-4 py-3 text-slate-100 font-space text-sm focus:outline-none focus:ring-1 focus:ring-cyan-400 transition-colors"
+                    >
+                      <option value="5k-10k">$2,500 - $5,000</option>
+                      <option value="10k-25k">$5,000 - $10,000</option>
+                      <option value="25k-50k">$10,000 - $25,000+</option>
+                      <option value="enterprise">Enterprise Contract / Retainer</option>
+                    </select>
+                  </div>
+
+                </div>
+
+                <!-- Message Field -->
+                <div class="space-y-2">
+                  <label for="contact-message" class="font-mono text-xs text-slate-300 flex items-center justify-between">
+                    <span>TRANSMISSION DETAILS <span class="text-cyan-400">*</span></span>
+                    <span class="text-[10px] text-red-400 hidden" id="message-error">Min 15 characters</span>
+                  </label>
+                  <textarea 
+                    id="contact-message" 
+                    name="message" 
+                    rows="4" 
+                    required 
+                    placeholder="Briefly describe your project requirements, goals, or architectural challenges..." 
+                    class="w-full bg-slate-950/80 border border-slate-700 focus:border-cyan-400 rounded-lg px-4 py-3 text-slate-100 font-space text-sm focus:outline-none focus:ring-1 focus:ring-cyan-400 transition-colors resize-none"
+                  ></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <button 
+                  type="submit" 
+                  id="submit-btn" 
+                  class="w-full cyber-btn cyber-btn-primary flex items-center justify-center gap-3 py-4 text-sm font-orbitron font-bold group"
+                >
+                  <i class="fa-solid fa-paper-plane text-cyan-400 group-hover:rotate-12 transition-transform"></i>
+                  <span id="submit-btn-text">TRANSMIT ENCRYPTED PAYLOAD</span>
+                  <i class="fa-solid fa-lock text-xs text-cyan-400/80"></i>
+                </button>
+
+                <!-- Feedback Toast Status -->
+                <div id="form-feedback" class="hidden p-4 rounded-lg font-mono text-xs text-center border"></div>
+
+              </form>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- 7. FOOTER                                                                 -->
+  <!-- ========================================================================= -->
+  <footer class="relative z-20 border-t border-cyan-500/20 bg-slate-950 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-slate-800">
+        
+        <!-- Brand / Identity -->
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded border border-cyan-400 bg-cyan-950/50 flex items-center justify-center font-orbitron font-bold text-cyan-400 text-sm">
+            M
+          </div>
+          <div>
+            <h4 class="font-orbitron font-bold text-white text-base">MUHAIMAN</h4>
+            <p class="font-mono text-[10px] text-slate-400">ENGINEERING &bull; AI &bull; 3D WEB &bull; CYBERSECURITY</p>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="flex items-center gap-6 font-mono text-xs text-slate-400">
+          <a href="#hero" class="hover:text-cyan-400 transition-colors">Hero</a>
+          <a href="#about" class="hover:text-cyan-400 transition-colors">About</a>
+          <a href="#services" class="hover:text-cyan-400 transition-colors">Services</a>
+          <a href="#skills" class="hover:text-cyan-400 transition-colors">Skills</a>
+          <a href="#projects" class="hover:text-cyan-400 transition-colors">Projects</a>
+          <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a>
+        </div>
+
+        <!-- Social Icons Row -->
+        <div class="flex items-center gap-3">
+          <a href="https://www.linkedin.com/in/atta-ul-muhaiman" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyan-400 hover:text-cyan-400 text-slate-400 flex items-center justify-center transition-all" title="LinkedIn">
+            <i class="fa-brands fa-linkedin-in text-sm"></i>
+          </a>
+          <a href="https://github.com/muhaimanawan" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyan-400 hover:text-cyan-400 text-slate-400 flex items-center justify-center transition-all" title="GitHub">
+            <i class="fa-brands fa-github text-sm"></i>
+          </a>
+          <a href="https://wa.me/923021173377?text=Hello%20Muhaiman,%20I%20reviewed%20your%20portfolio%20and%20would%20like%20to%20connect!" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-slate-900 border border-slate-800 hover:border-emerald-400 hover:text-emerald-400 text-slate-400 flex items-center justify-center transition-all" title="WhatsApp (+92 302 1173377)">
+            <i class="fa-brands fa-whatsapp text-sm"></i>
+          </a>
+          <button id="back-to-top" class="w-9 h-9 rounded-lg bg-cyan-950/50 border border-cyan-500/40 text-cyan-400 hover:bg-cyan-400 hover:text-black flex items-center justify-center transition-all shadow-[0_0_10px_rgba(0,243,255,0.2)]" title="Scroll to Top">
+            <i class="fa-solid fa-arrow-up text-xs"></i>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Telemetry Bottom Bar -->
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-slate-500 font-mono text-[11px] gap-4 text-center sm:text-left">
+        <div>
+          &copy; 2026 Muhaiman. All Rights Reserved. Engineered with Three.js & Modern Web Standards.
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="text-emerald-400"><i class="fa-solid fa-circle text-[7px] mr-1"></i>PING: 14ms // TLS 1.3 SECURED</span>
+          <span class="hidden md:inline text-slate-600">|</span>
+          <span class="text-slate-400 font-mono" id="system-clock">UTC 00:00:00</span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- PROJECT INSPECTION BLUEPRINT MODAL                                        -->
+  <!-- ========================================================================= -->
+  <div id="project-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="relative w-full max-w-2xl rounded-2xl bg-slate-900 border border-cyan-500/50 p-6 sm:p-8 shadow-[0_0_50px_rgba(0,243,255,0.2)] transform scale-95 transition-transform duration-300" id="modal-container">
+      
+      <!-- Close Button -->
+      <button id="close-modal-btn" class="absolute top-4 right-4 w-9 h-9 rounded-lg bg-slate-800 text-slate-400 hover:text-white hover:bg-red-950/80 border border-slate-700 hover:border-red-500/50 flex items-center justify-center transition-colors">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <!-- Modal Content Placeholder -->
+      <div id="modal-content" class="space-y-6">
+        <!-- Dynamically injected via main.js -->
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Three.js CDN Library (r128) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Main JavaScript File -->
+  <script src="main.js"></script>
+</body>
+</html>

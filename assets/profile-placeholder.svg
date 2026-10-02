@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" height="100%">
+  <defs>
+    <radialGradient id="cyberGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00f3ff" stop-opacity="0.3"/>
+      <stop offset="60%" stop-color="#b026ff" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#030712" stop-opacity="0.95"/>
+    </radialGradient>
+    <linearGradient id="neonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f3ff"/>
+      <stop offset="50%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#b026ff"/>
+    </linearGradient>
+    <linearGradient id="armorGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#111c38"/>
+      <stop offset="100%" stop-color="#060c1d"/>
+    </linearGradient>
+    <filter id="glowFilter" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <pattern id="gridPattern" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(0, 243, 255, 0.08)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Background Layer -->
+  <rect width="600" height="600" fill="#040816"/>
+  <rect width="600" height="600" fill="url(#gridPattern)"/>
+  <circle cx="300" cy="300" r="280" fill="url(#cyberGlow)"/>
+
+  <!-- Rotating Geometric Circles & HUD Rings -->
+  <circle cx="300" cy="300" r="230" fill="none" stroke="#00f3ff" stroke-width="2" opacity="0.6" stroke-dasharray="8 6"/>
+  <circle cx="300" cy="300" r="210" fill="none" stroke="#b026ff" stroke-width="1.5" opacity="0.8"/>
+  <circle cx="300" cy="300" r="185" fill="none" stroke="#00ff9d" stroke-width="1" opacity="0.4" stroke-dasharray="16 12"/>
+
+  <!-- Orbital Nodes -->
+  <circle cx="300" cy="70" r="5" fill="#00f3ff" filter="url(#glowFilter)"/>
+  <circle cx="530" cy="300" r="5" fill="#b026ff" filter="url(#glowFilter)"/>
+  <circle cx="300" cy="530" r="5" fill="#00ff9d" filter="url(#glowFilter)"/>
+  <circle cx="70" cy="300" r="5" fill="#38bdf8" filter="url(#glowFilter)"/>
+
+  <!-- Cybernetic Silhouette Figure -->
+  <!-- Shoulders & Upper Body Armor -->
+  <polygon points="130,500 220,370 380,370 470,500 440,550 160,550" fill="url(#armorGradient)" stroke="#00f3ff" stroke-width="2"/>
+  <!-- Chest Reactor Core -->
+  <polygon points="275,415 325,415 340,455 300,480 260,455" fill="#061226" stroke="#00ff9d" stroke-width="2" filter="url(#glowFilter)"/>
+  <circle cx="300" cy="445" r="12" fill="#00ff9d" opacity="0.8"/>
+
+  <!-- Neck & Collar Support -->
+  <rect x="260" y="340" width="80" height="40" rx="4" fill="#0a1733" stroke="#3b82f6" stroke-width="1.5"/>
+  <line x1="260" y1="360" x2="340" y2="360" stroke="#00f3ff" stroke-width="2"/>
+
+  <!-- Head Base -->
+  <ellipse cx="300" cy="245" rx="80" ry="95" fill="url(#armorGradient)" stroke="url(#neonGradient)" stroke-width="2.5"/>
+  
+  <!-- Cyber Visor / Optical Array -->
+  <polygon points="230,225 370,225 360,260 240,260" fill="#00f3ff" opacity="0.9" filter="url(#glowFilter)"/>
+  <line x1="240" y1="242" x2="360" y2="242" stroke="#ffffff" stroke-width="2" opacity="0.9"/>
+  
+  <!-- Temple Audio / Neural Implants -->
+  <rect x="212" y="230" width="12" height="30" rx="3" fill="#b026ff" filter="url(#glowFilter)"/>
+  <rect x="376" y="230" width="12" height="30" rx="3" fill="#b026ff" filter="url(#glowFilter)"/>
+
+  <!-- Cybernetic Data Overlay Lines -->
+  <line x1="160" y1="200" x2="220" y2="200" stroke="#00f3ff" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <line x1="380" y1="200" x2="440" y2="200" stroke="#00f3ff" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <text x="140" y="195" fill="#00f3ff" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="1">TARGET: ACQUIRED</text>
+  <text x="385" y="195" fill="#00ff9d" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="1">AI SYS: ONLINE</text>
+
+  <!-- Name & Title Tag -->
+  <rect x="180" y="490" width="240" height="38" rx="6" fill="#020817" stroke="#00f3ff" stroke-width="1.5"/>
+  <text x="300" y="515" fill="#00f3ff" font-family="'Orbitron', sans-serif" font-weight="700" font-size="19" text-anchor="middle" letter-spacing="3" filter="url(#glowFilter)">MUHAIMAN</text>
+  <text x="300" y="548" fill="#d946ef" font-family="'Space Grotesk', sans-serif" font-weight="600" font-size="11" text-anchor="middle" letter-spacing="2">AI ARCHITECT // CYBER DEFENDER</text>
+
+  <!-- Sci-Fi Corner Brackets -->
+  <path d="M 30,70 L 30,30 L 70,30" fill="none" stroke="#00f3ff" stroke-width="3"/>
+  <path d="M 530,30 L 570,30 L 570,70" fill="none" stroke="#00f3ff" stroke-width="3"/>
+  <path d="M 30,530 L 30,570 L 70,570" fill="none" stroke="#00f3ff" stroke-width="3"/>
+  <path d="M 530,570 L 570,570 L 570,530" fill="none" stroke="#00f3ff" stroke-width="3"/>
+
+  <!-- Scanning Line -->
+  <line x1="40" y1="300" x2="560" y2="300" stroke="rgba(0, 243, 255, 0.4)" stroke-width="2"/>
+</svg>
